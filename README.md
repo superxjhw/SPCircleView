@@ -3,7 +3,7 @@ A custom animation
 
 ###How to use
 
-```obj
+```objc
 
 - (void)viewDidLoad {
 [super viewDidLoad];
