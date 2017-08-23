@@ -32,10 +32,10 @@ CGPoint center;
  @param number 周围按钮个数
  @param buttonAciton 周围按钮点击事件
  @param duration 动画时间
- @param addTimer 是否添加定时器(添加后自动旋转)
+ @param rotation 是否旋转
  @return ZCCircleView
  */
-- (instancetype)initWithCenterPoint:(CGPoint)centerPoint radius:(CGFloat)radiusMax childCilcleRadius:(CGFloat)radiusMin number:(NSInteger)number circleButtonClick:(void(^)(UIButton *button))buttonAciton animationDuration:(CGFloat)duration addTimer:(BOOL)addTimer {
+- (instancetype)initWithCenterPoint:(CGPoint)centerPoint radius:(CGFloat)radiusMax childCilcleRadius:(CGFloat)radiusMin number:(NSInteger)number circleButtonClick:(void(^)(UIButton *button))buttonAciton animationDuration:(CGFloat)duration rotation:(BOOL)rotation {
     
     self = [[ZCCircleView alloc] init];
     self.radiusMax = radiusMax;
@@ -55,15 +55,9 @@ CGPoint center;
     self.centerButton = centerButton;
     self.centerButton.selected = NO;
     
-    if (addTimer) {
-        __block CGFloat angle = 0;
-        NSTimer *timer = [NSTimer timerWithTimeInterval:0.05 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            angle += 0.01;
-            self.layer.transform = CATransform3DMakeRotation(angle, 0, 0, 1);
-        }];
-        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-        [timer fire];
-
+    if (rotation) {
+        CADisplayLink *link = [CADisplayLink displayLinkWithTarget:self selector:@selector(makeRotation)];
+        [link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
     }
     
     return self;
@@ -130,6 +124,11 @@ CGPoint center;
     if (self.buttonAciton) {
         self.buttonAciton(button);
     }
+}
+
+- (void)makeRotation {
+
+    self.layer.transform = CATransform3DRotate(self.layer.transform, M_PI / 180 / 5, 0, 0, 1);
 }
 
 
