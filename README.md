@@ -12,4 +12,4 @@ circleView.titleArray = @[@"主题",@"心情",@"推荐",@"曲风",@"场景",@"�
 [self.view addSubview:circleView];
 
 ```
-![(效果图)](http://images2017.cnblogs.com/blog/912458/201708/912458-20170822155054933-302168319.gif)
+![(效果图)](./ZCCircleView/ZCCircleView.gif)
