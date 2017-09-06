@@ -100,9 +100,12 @@ CGPoint center;
                 button.center = center;
             } completion:^(BOOL finished) {
                 [button removeFromSuperview];
+                self.layer.transform = CATransform3DIdentity;
             }];
         }
     }
+    
+    
 }
 
 - (UIButton *)createCircleButton {
@@ -127,8 +130,13 @@ CGPoint center;
 }
 
 - (void)makeRotation {
-
-    self.layer.transform = CATransform3DRotate(self.layer.transform, M_PI / 180 / 5, 0, 0, 1);
+    
+    if (self.centerButton.selected) {
+        self.layer.transform = CATransform3DRotate(self.layer.transform, M_PI / 180 / 5, 0, 0, 1);
+        for (UIButton *subButton in self.subviews) {
+            subButton.layer.transform = CATransform3DRotate(subButton.layer.transform, -M_PI / 180 / 5, 0, 0, 1);
+        }
+    }
 }
 
 
