@@ -101,6 +101,7 @@ CGPoint center;
             } completion:^(BOOL finished) {
                 [button removeFromSuperview];
                 self.layer.transform = CATransform3DIdentity;
+                self.centerButton.layer.transform = CATransform3DIdentity;
             }];
         }
     }
