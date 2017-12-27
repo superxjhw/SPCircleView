@@ -1,16 +1,15 @@
 //
-//  ZCCircleView.m
+//  SPCircleView.m
 //  test
 //
 //  Created by YJTSuper on 2017/8/22.
 //  Copyright © 2017年 YJTSuper. All rights reserved.
 //
 
-#import "ZCCircleView.h"
+#import "SPCircleView.h"
 
-@interface ZCCircleView ()
+@interface SPCircleView ()
 
-@property (nonatomic, weak) UIButton *centerButton;
 @property (nonatomic, assign) CGFloat radiusMax;
 @property (nonatomic, assign) CGFloat radiusMin;
 @property (nonatomic, assign) NSInteger count;
@@ -19,25 +18,13 @@
 
 @end
 
-@implementation ZCCircleView
+@implementation SPCircleView
 
 CGPoint center;
 
-/**
- Description
- 
- @param centerPoint 中心点
- @param radiusMax 半径
- @param radiusMin 周围按钮半径
- @param number 周围按钮个数
- @param buttonAciton 周围按钮点击事件
- @param duration 动画时间
- @param rotation 是否旋转
- @return ZCCircleView
- */
 - (instancetype)initWithCenterPoint:(CGPoint)centerPoint radius:(CGFloat)radiusMax childCilcleRadius:(CGFloat)radiusMin number:(NSInteger)number circleButtonClick:(void(^)(UIButton *button))buttonAciton animationDuration:(CGFloat)duration rotation:(BOOL)rotation {
     
-    self = [[ZCCircleView alloc] init];
+    self = [[SPCircleView alloc] init];
     self.radiusMax = radiusMax;
     self.radiusMin = radiusMin;
     self.count = number;
@@ -112,6 +99,7 @@ CGPoint center;
 - (UIButton *)createCircleButton {
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.titleLabel.font = [UIFont systemFontOfSize:16];
     btn.layer.masksToBounds = YES;
     btn.layer.cornerRadius = self.radiusMin;
     btn.bounds = CGRectMake(0, 0, self.radiusMin * 2, self.radiusMin * 2);
