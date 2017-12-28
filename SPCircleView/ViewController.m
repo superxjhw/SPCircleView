@@ -26,7 +26,7 @@
         dataSouceDict[@"OSChina"] = @"https://gitee.com/HaiShengHuo";
         dataSouceDict[@"GitGUI"] = @"https://git-scm.com/download/gui/mac";
         dataSouceDict[@"Apple"] = @"https://www.apple.com/cn/";
-        dataSouceDict[@"ESO"] = @"http://www.eso.org/public/images/";
+        dataSouceDict[@"JianShu"] = @"https://www.jianshu.com/u/eb2a1c435ff3";
         _dataSouceDict = dataSouceDict;
     }
     
